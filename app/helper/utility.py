@@ -9,7 +9,7 @@ from app.helper.url_loader import URLLoader
 from app.schemas.loader import BaseLoader
 
 
-def load_file(document: BaseLoader) -> List[Document]:
+def load_file(document: BaseLoader) -> (List[Document], str):
     """
          This endpoint is used to load any type of document from a local filesystem or remote location
     :param document: url of the document
@@ -52,4 +52,14 @@ def load_file(document: BaseLoader) -> List[Document]:
                 temp_loader.del_file()
     except Exception as e:
         logger.error(f"Error loading file: {e}")
+        return [], str(e)
+    return content, ""
+
+
+def fetch_contents_from_api_endpoint(document: BaseLoader):
+    temp_loader = URLLoader(document.url)
+    loader = JSONLoader(file_path=temp_loader.get_file_path(), jq_schema='.', text_content=False)
+    content = loader.load()
+    # delete the temporary file
+    temp_loader.del_file()
     return content
