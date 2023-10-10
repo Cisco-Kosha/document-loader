@@ -1,12 +1,9 @@
 import logging
-import os
-import secrets
 from logging.config import dictConfig
-from typing import Any, Dict, List, Optional, Union
 
-from pydantic import AnyHttpUrl, BaseSettings, EmailStr, HttpUrl, PostgresDsn, validator
+from pydantic import BaseSettings
 
-from utils.logging import LogConfig
+from app.utils.logging import LogConfig
 
 
 class Settings(BaseSettings):
