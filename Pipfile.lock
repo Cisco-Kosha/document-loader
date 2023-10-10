@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a7569e7816f8c005242b909edec66db013f01d33eaac6050fcc0425393d291ef"
+            "sha256": "e554a0ff0f5e90257d9b68eb4e17de660b251d80ecdd49ba9c6d3178cccfbece"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -297,6 +297,7 @@
                 "sha256:a870d443e5405982e1667dfe372663abf10754f246866056336d7f01c21dab07"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==0.95.1"
         },
         "frozenlist": {
@@ -528,6 +529,7 @@
                 "sha256:fd28f8395687e45bba56dc771284ebb6492b02037f74f450176c102f3f4e86a3"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.5'",
             "version": "==1.6.0"
         },
         "jsonpatch": {
@@ -548,11 +550,12 @@
         },
         "langchain": {
             "hashes": [
-                "sha256:24b277c31c265d22166626be825ceccab7eb48de718ba15fd3ac8faaa2b055c2",
-                "sha256:86172a625ee41807056449b7ed27c163e349136979762f18f59b4fa1abcd2325"
+                "sha256:2c7ea6e80195b8747c25ca4b905bd4814f26f47719a27edcb369cb6cd2186df3",
+                "sha256:4629233c158f23dcfb0cbc249b27d7d8bde1e71ce1d8972d53ae54c7504fc78a"
             ],
             "index": "pypi",
-            "version": "==0.0.311"
+            "markers": "python_version < '4.0' and python_full_version >= '3.8.1'",
+            "version": "==0.0.312"
         },
         "langsmith": {
             "hashes": [
@@ -752,6 +755,7 @@
                 "sha256:d4af8502b8b3cb8d338b60664d8813e562dde38a6e6175e021f60316bbf42cae"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==3.16.3"
         },
         "python-multipart": {
@@ -760,6 +764,7 @@
                 "sha256:ee698bab5ef148b0a760751c261902cd096e57e10558e11aca17646b74ee1c18"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==0.0.6"
         },
         "pyyaml": {
@@ -942,6 +947,7 @@
                 "sha256:e47cac98a6da10cd41e6fd036d472c6f58ede6c5dbee3dbee3ef7a100ed97742"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==0.21.1"
         },
         "yarl": {
