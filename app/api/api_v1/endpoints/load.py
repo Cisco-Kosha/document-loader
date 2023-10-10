@@ -57,7 +57,7 @@ def load_remote_document(document: BaseLoader) -> Any:
     except Exception as e:
         return Response(status_code=400, content=str(e))
     if not content:
-        return Response(status_code=400, content="File type not supported")
+        return Response(status_code=400, content="Data type not supported")
     else:
         return content
 
