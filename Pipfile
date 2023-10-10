@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+langchain = "==0.0.311"
+fastapi = "==0.95.1"
+uvicorn = "~=0.21.1"
+pypdf = "==3.16.3"
+docx2txt = "*"
+jq = "*"
+python-multipart = "*"
+bs4 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

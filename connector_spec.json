@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "fields": [
+    {
+      "field": "AUTH_TYPE",
+      "displayName": "Auth Type for the API",
+      "type": "String",
+      "description": "Auth Type",
+      "default": "NONE",
+      "helpSection": "Auth Type"
+    }
+  ]
+}
