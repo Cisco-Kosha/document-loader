@@ -1,4 +1,4 @@
-FROM dockerhub.cisco.com/docker.io/python:3.9.5-slim
+FROM docker.io/python:3.9.5-slim
 
 RUN pip install pipenv
 
