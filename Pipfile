@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-langchain = "==0.0.312"
+langchain = "==0.0.325"
 fastapi = "==0.95.1"
 uvicorn = "~=0.21.1"
 pypdf = "==3.16.3"
