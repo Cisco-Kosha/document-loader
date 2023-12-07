@@ -8,6 +8,8 @@ from app.core.config import logger
 from app.helper.url_loader import URLLoader
 from app.schemas.loader import BaseLoader
 
+from langchain.document_loaders.recursive_url_loader import RecursiveUrlLoader
+from bs4 import BeautifulSoup as Soup
 
 def load_file(document: BaseLoader) -> (List[Document], str):
     """
@@ -63,3 +65,17 @@ def fetch_contents_from_api_endpoint(document: BaseLoader):
     # delete the temporary file
     temp_loader.del_file()
     return content
+
+def web_crawl(document: BaseLoader) -> (List[Document], str):
+    """
+         This endpoint is used to crawl a website url provided
+    :param document: url of website to crawl
+    :return:  List of documents
+    """  
+    #print(document) 
+    loader = RecursiveUrlLoader(url=document.url, max_depth=2, extractor=lambda x: Soup(x, "html.parser").text)
+    docs = loader.load()
+
+    print(docs)
+
+    return docs, ""

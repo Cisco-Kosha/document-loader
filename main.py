@@ -22,3 +22,4 @@ logger.info("Starting document-loader-connector app")
 
 app.include_router(api_v1_router, prefix=settings.API_V1_STR)
 
+
