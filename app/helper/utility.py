@@ -10,6 +10,13 @@ from app.schemas.loader import BaseLoader
 
 from langchain.document_loaders.recursive_url_loader import RecursiveUrlLoader
 from bs4 import BeautifulSoup as Soup
+from fake_useragent import UserAgent
+
+from langchain.document_loaders import AsyncHtmlLoader
+
+from langchain.document_loaders import AsyncChromiumLoader
+
+from llama_index import download_loader
 
 def load_file(document: BaseLoader) -> (List[Document], str):
     """
@@ -66,15 +73,67 @@ def fetch_contents_from_api_endpoint(document: BaseLoader):
     temp_loader.del_file()
     return content
 
-def web_crawl(document: BaseLoader) -> (List[Document], str):
+def web_crawl_RecursiveUrlLoader(document: BaseLoader) -> (List[Document], str):
     """
          This endpoint is used to crawl a website url provided
     :param document: url of website to crawl
     :return:  List of documents
     """  
-    #print(document) 
+
+    #https://github.com/langchain-ai/langchain/issues/11540 -> 403 errors for website
+    header_template = {}
+    header_template["User-Agent"] = UserAgent().random
+
     loader = RecursiveUrlLoader(url=document.url, max_depth=2, extractor=lambda x: Soup(x, "html.parser").text)
     docs = loader.load()
+
+    print(docs)
+
+    return docs, ""
+
+def web_crawl_AsyncHtmlLoader(document: BaseLoader) -> (List[Document], str):
+    """
+         This endpoint is used to crawl a website url provided
+    :param document: url of website to crawl
+    :return:  List of documents
+    """  
+    urls = []
+    urls.append(document.url)
+    loader = AsyncHtmlLoader(urls)
+    docs = loader.load()
+
+    print(docs)
+
+    return docs, ""
+
+def web_crawl_AsyncChromiumLoader(document: BaseLoader) -> (List[Document], str):
+    """
+         This endpoint is used to crawl a website url provided
+    :param document: url of website to crawl
+    :return:  List of documents
+    """  
+    urls = []
+    urls.append(document.url) 
+    loader = AsyncChromiumLoader(urls)
+    docs = loader.load()
+
+    #print(docs)
+    #print(docs[0].page_content[0:])
+
+    return docs, ""
+
+def web_crawl_SimpleWebPageLoader(document: BaseLoader) -> (List[Document], str):
+    """
+         This endpoint is used to crawl a website url provided
+    :param document: url of website to crawl
+    :return:  List of documents
+    """  
+    urls = []
+    urls.append(document.url)
+ 
+    SimpleWebPageReader = download_loader("SimpleWebPageReader")
+    loader = SimpleWebPageReader()
+    docs = loader.load_data(urls)
 
     print(docs)
 
