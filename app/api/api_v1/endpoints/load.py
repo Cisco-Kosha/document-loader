@@ -6,11 +6,32 @@ from fastapi import APIRouter, UploadFile, File
 from starlette.responses import Response
 
 from app.helper.url_loader import URLLoader
-from app.helper.utility import load_file, fetch_contents_from_api_endpoint
+from app.helper.utility import web_crawl_MediumUrlLoader, web_crawl_MediumPubUrlLoader, web_crawl_RecursiveUrlLoader, web_crawl_AsyncHtmlLoader, web_crawl_AsyncChromiumLoader, web_crawl_SimpleWebPageLoader, load_file, fetch_contents_from_api_endpoint
 from app.schemas.loader import BaseLoader
 
 
 router = APIRouter()
+
+@router.post("/crawl", status_code=200)
+def crawl_website(document: BaseLoader) -> Any:
+    """
+       This endpoint is used to load any type of document by crawling a website url
+    """
+    try:
+        content, err = web_crawl_MediumUrlLoader(document)
+        #content, err = web_crawl_MediumPubUrlLoader(document) #wip
+        #content, err = web_crawl_RecursiveUrlLoader(document)
+        #content, err = web_crawl_AsyncHtmlLoader(document)
+        #content, err = web_crawl_AsyncChromiumLoader(document)
+        #content, err = web_crawl_SimpleWebPageLoader(document)
+        if err != "":
+            return Response(status_code=400, content=str(err))
+    except Exception as e:
+        return Response(status_code=400, content=str(e))
+    if not content:
+        return Response(status_code=400, content="could not crawl provided url")
+    else:
+        return content    
 
 
 @router.post("/", status_code=200)
